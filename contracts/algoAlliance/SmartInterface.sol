@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
@@ -13,17 +12,19 @@ contract SmartInterface {
     IERC20 public erc20;
     IERC20Metadata public erc20Metadata;
 
-    //  IERC721 public erc721;
-    //  IERC721Metadata public erc721Metadata;
+    IERC721 public erc721;
+    IERC721Metadata public erc721Metadata;
 
     constructor(
         IERC20 _erc20,
-        IERC20Metadata _erc20Metadata /*IERC721 _erc721,  IERC721Metadata _erc721Metadata*/
+        IERC20Metadata _erc20Metadata,
+        IERC721 _erc721,
+        IERC721Metadata _erc721Metadata
     ) {
         erc20 = _erc20;
         erc20Metadata = _erc20Metadata;
-        //  erc721 = _erc721;
-        //  erc721Metadata= _erc721Metadata;
+        erc721 = _erc721;
+        erc721Metadata = _erc721Metadata;
     }
 
     //  ERC20 CALLS
@@ -86,58 +87,78 @@ contract SmartInterface {
         return IERC20(erc20).approve(spender, amount);
     }
 
-    //     // ERC721 CALLS
+    // ERC721 CALLS
 
-    //     function NFTname (string memory) external view returns(string memory){
-    //          return  IERC721Metadata(erc20).name() ;
-    //     }
+    function NFTname(string memory) external view returns (string memory) {
+        return IERC721Metadata(erc721Metadata).name();
+    }
 
-    //   function NFTsymbol(string memory) external view returns(string memory){
-    //          return  IERC721Metadata(erc20).symbol() ;
-    //     }
+    function NFTsymbol(string memory) external view returns (string memory) {
+        return IERC721Metadata(erc721Metadata).symbol();
+    }
 
-    //      function tokenURI(uint256 tokenId) external view returns(string memory){
-    //          return  IERC721Metadata(erc20).tokenURI(tokenId) ;
-    //     }
+    function tokenURI(uint256 tokenId) external view returns (string memory) {
+        return IERC721Metadata(erc721Metadata).tokenURI(tokenId);
+    }
 
-    //     function balanceOfNFT(address owner)external view returns(uint256){
-    //     return IERC721(erc20).balanceOf(owner);
-    //     }
+    function balanceOfNFT(address owner) external view returns (uint256) {
+        return IERC721(erc721).balanceOf(owner);
+    }
 
-    //      function ownerOf(uint256 tokenId)external view returns(address){
-    //     return IERC721(erc20).ownerOf(tokenId);
-    //     }
+    function ownerOf(uint256 tokenId) external view returns (address) {
+        return IERC721(erc721).ownerOf(tokenId);
+    }
 
-    //     function safeTransferFromWithBytes(address from, address to, uint256 tokenId, bytes memory data)external{
-    //     return IERC721(erc20).safeTransferFrom(from, to, tokenId, data);
-    //     }
+    function safeTransferFromWithBytes(
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes memory data
+    ) external {
+        return IERC721(erc721).safeTransferFrom(from, to, tokenId, data);
+    }
 
-    //     function safeTransferFrom(address from, address to, uint256 tokenId)external{
-    //     return IERC721(erc20).safeTransferFrom(from, to, tokenId);
-    //     }
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) external {
+        return IERC721(erc721).safeTransferFrom(from, to, tokenId);
+    }
 
-    //     function transferFrom(address from, address to, uint256 tokenId)external {
-    //         return IERC721(erc20).transferFrom(from, to, tokenId);
+    function transferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) external {
+        return IERC721(erc721).transferFrom(from, to, tokenId);
+    }
 
-    //     }
+    function approve(address spender, uint256 tokenId) external {
+        return IERC721(erc721).approve(spender, tokenId);
+    }
 
-    //      function approve(address spender, uint256 tokenId)external{
-    //     return IERC721(erc20). approve(spender, tokenId);
-    //     }
+    function getApproved(uint256 tokenId) external view returns (address) {
+        return IERC721(erc721).getApproved(tokenId);
+    }
 
-    //       function getApproved(uint256 tokenId)external view returns(address){
-    //     return IERC721(erc20).getApproved(tokenId);
-    //     }
+    function setApprovalForAll(address operator, bool _approved) external {
+        return IERC721(erc721).setApprovalForAll(operator, _approved);
+    }
 
-    //        function setApprovalForAll(address operator, bool _approved)external {
-    //     return IERC721(erc20).setApprovalForAll(operator, _approved);
-    //     }
+    function isApprovedForAll(address owner, address operator)
+        external
+        view
+        returns (bool)
+    {
+        return IERC721(erc721).isApprovedForAll(owner, operator);
+    }
 
-    //         function isApprovedForAll(address owner, address operator)external view returns(bool) {
-    //     return IERC721(erc20).isApprovedForAll(owner, operator);
-    //     }
-
-    //     function supportsInterface(bytes4 interfaceId)external view returns(bool) {
-    //     return IERC165(erc20).supportsInterface(interfaceId);
-    //     }
+    function supportsInterface(bytes4 interfaceId)
+        external
+        view
+        returns (bool)
+    {
+        return IERC165(erc721).supportsInterface(interfaceId);
+    }
 }
