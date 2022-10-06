@@ -2,10 +2,10 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
-// import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./ERC20Token.sol";
 import "./NFTCollection.sol";
-import "./IERC20Token.sol";
+import "./interface/IERC20Token.sol";
 
 contract TokenFactory {
     using Counters for Counters.Counter;
@@ -88,7 +88,7 @@ contract TokenFactory {
         uint256 _initialSupply,
         address minter
     ) internal returns (ERC20Token) {
-        return new ERC20Token(_initialSupply, _name, _symbol, minter);
+        return new ERC20Token(_initialSupply, _name, _symbol);
     }
 
     function createNFTCollection(string memory _name, string memory _symbol)

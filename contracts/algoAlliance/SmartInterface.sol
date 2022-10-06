@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
-import "./IERC20Token.sol";
+import "./interface/IERC20Token.sol";
 
 contract SmartInterface {
     IERC20 public erc20;
