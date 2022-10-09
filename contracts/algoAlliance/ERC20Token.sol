@@ -9,7 +9,10 @@ contract ERC20Token is ERC20 {
         uint256 initialSupply,
         string memory _name,
         string memory _symbol
-    ) ERC20(_name, _symbol) {
+    )
+        // address minter
+        ERC20(_name, _symbol)
+    {
         _mint(msg.sender, initialSupply);
     }
 
