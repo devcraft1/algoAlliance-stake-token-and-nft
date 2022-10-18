@@ -5,24 +5,25 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./library/Array.sol";
 // import "./NFTCollection.sol";
 import "./ERC20Token.sol";
 
-library Array {
-    /**
-     *   @notice remove given elements from array
-     *   @dev usable only if _array contains unique elements only
-     */
-    function removeElement(uint256[] storage _array, uint256 _element) public {
-        for (uint256 i; i < _array.length; i++) {
-            if (_array[i] == _element) {
-                _array[i] = _array[_array.length - 1];
-                _array.pop();
-                break;
-            }
-        }
-    }
-}
+// library Array {
+//     /**
+//      *   @notice remove given elements from array
+//      *   @dev usable only if _array contains unique elements only
+//      */
+//     function removeElement(uint256[] storage _array, uint256 _element) public {
+//         for (uint256 i; i < _array.length; i++) {
+//             if (_array[i] == _element) {
+//                 _array[i] = _array[_array.length - 1];
+//                 _array.pop();
+//                 break;
+//             }
+//         }
+//     }
+// }
 
 contract StakingPool is ReentrancyGuard, Ownable {
     string public name = "Staking pool";
