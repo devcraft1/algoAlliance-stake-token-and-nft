@@ -16,6 +16,8 @@ contract ERC20Token is ERC20 {
         _mint(msg.sender, initialSupply);
     }
 
+    receive() external payable {}
+
     function mint(uint256 amount) public {
         _mint(msg.sender, amount);
     }
